@@ -1,7 +1,6 @@
 
 //reate ul in the main div for todo
 // create randomfunc that pulls a random id number from the array of 10 elements 
-randomElements=[1,2,3,4,5,6,7,8,9];
 
 // create the div from the input/date/notes
 // should be one main div with 3 divs inside of it 
@@ -15,3 +14,27 @@ randomElements=[1,2,3,4,5,6,7,8,9];
 
 // ))
 
+// create list to append everything on 
+
+
+const text = document.getElementById("text");
+const addTaskButton = document.getElementById("add-task-btn");
+const saveTaskButton = document.getElementById("save-todo-btn");
+const listBox = document.getElementById("listBox");
+const saveInd = document.getElementById("saveIndex");
+let todoArray = [];
+
+addTaskButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    let todo = localStorage.getItem("todo");
+    if (todo === null) {
+      todoArray = [];
+    } else {
+      todoArray = JSON.parse(todo);
+    }
+    todoArray.push(text.value);
+    text.value = "";
+    localStorage.setItem("todo", JSON.stringify(todoArray));
+    displayTodo();
+   });
+   
